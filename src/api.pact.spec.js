@@ -52,13 +52,13 @@ describe('API Pact test', () => {
 
         // set up Pact interactions
         await mockProvider.addInteraction({
-          state: 'a product with ID 11 does not exist',
+          state: 'a product with ID 12 does not exist',
           uponReceiving: 'a request to get a product',
           withRequest: {
             method: 'GET',
-            path: '/product/11',
+            path: '/product/12',
             headers: {
-              'Authorization': like('Bearer 2019-01-14T11:34:18.045Z')
+              'Authorization': like('Bearer 2022-01-14T11:34:18.045Z')
             }
           },
           willRespondWith: {
@@ -69,7 +69,7 @@ describe('API Pact test', () => {
         const api = new API(mockProvider.mockService.baseUrl);
 
         // make request to Pact mock server
-        await expect(api.getProduct('11')).rejects.toThrow('Request failed with status code 404');
+        await expect(api.getProduct('12')).rejects.toThrow('Request failed with status code 404');
     });
   });
   describe('retrieving products', () => {
@@ -84,7 +84,7 @@ describe('API Pact test', () => {
           method: 'GET',
           path: '/products',
           headers: {
-            Authorization: like('Bearer 2019-01-14T11:34:18.045Z'),
+            Authorization: like('Bearer 2022-01-14T11:34:18.045Z'),
           },
         },
         willRespondWith: {
